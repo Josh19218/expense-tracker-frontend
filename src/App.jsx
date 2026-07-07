@@ -6,7 +6,7 @@ function App() {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const newExpense = {
@@ -15,7 +15,20 @@ function App() {
       description: description,
     };
 
-    console.log(newExpense);
+    try {
+      const response = await fetch("http://127.0.0.1:8000/expenses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newExpense),
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   }
 
   return (
