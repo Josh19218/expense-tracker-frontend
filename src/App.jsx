@@ -6,11 +6,23 @@ function App() {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const newExpense = {
+      amount: parseFloat(amount),
+      category: category,
+      description: description,
+    };
+
+    console.log(newExpense);
+  }
+
   return (
     <div>
       <h1>Expense Tracker</h1>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="number"
           placeholder="Amount"
