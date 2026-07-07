@@ -105,3 +105,20 @@
 - .map() transforms an array of data into an array of JSX elements — the standard way to render lists in React
 - Every list item needs a unique key prop (here, expense.id) so React can track items efficiently
 - Re-fetching data after a mutation (like adding an expense) is a common pattern to keep the UI in sync with the backend
+
+## Day 7 — Logged-in/Logged-out UI & Polish
+
+**What I did:**
+
+- Cleared the expense form fields after successful submission
+- Used a ternary operator to conditionally show the login form or the expense tracker, based on whether a token exists
+- Used a Fragment (<>...</>) to group multiple elements without an extra wrapping div
+- Added a Logout button that clears the token
+- Fixed a bug where the login form stayed pre-filled after logout by also clearing username and password state
+
+**Concepts I learned:**
+
+- {condition ? A : B} is a ternary operator — JSX's inline way of conditionally rendering one thing or another
+- A Fragment (<>...</>) groups elements without adding an extra DOM node, since JSX requires returning a single root element
+- An arrow function's body can be a single expression (() => doThing()) or a block with multiple statements ({ doThing(); doOtherThing() })
+- Clearing all related state (not just the most obvious piece) matters for both UX and security — a password left visible after logout is a real issue, not just cosmetic
