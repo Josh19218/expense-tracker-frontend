@@ -5,9 +5,11 @@ A React frontend for the Expense Tracker API — lets users register, log in, an
 ## Features
 
 - Login with JWT-based authentication
-- Add expenses with amount, category, and description
+- Add, edit, and delete expenses
 - View a live list of expenses, pulled from a real backend and database
+- Live spending summary: total spent and breakdown by category
 - Logout, with proper state cleanup
+- Styled, responsive card-based UI
 
 ## Tech stack
 
@@ -50,7 +52,6 @@ This frontend is part of a three-part portfolio project:
 
 ## Possible future improvements
 
-- Add delete and edit buttons for existing expenses
-- Add proper styling
-- Show a spending summary (total, by category)
 - Deploy live
+- Add pagination for large expense lists
+- Add date tracking and filtering
