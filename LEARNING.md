@@ -25,3 +25,19 @@
 - e.target.value inside an onChange handler gives you the input's current text
 - import is a reserved JavaScript keyword — it can't be used as a tag/component name, which caused a rendering error when typed instead of <input>
 - Browser DevTools console is essential for debugging React state and catching errors during development
+
+## Day 2 — Form Submission
+
+**What I did:**
+
+- Built handleSubmit() to handle the form's submit event
+- Used e.preventDefault() to stop the default full-page reload
+- Converted the amount from a string to a number using parseFloat()
+- Bundled form state into a single object matching the API's expected shape
+
+**Concepts I learned:**
+
+- HTML forms reload the page by default on submit — e.preventDefault() stops this, essential in React forms
+- onSubmit={handleSubmit} wires a function to run when the form is submitted
+- parseFloat() converts a string to a decimal number, same underlying reason as float() in Python
+- Structuring form state into one object makes it easy to send as an API request body later
