@@ -152,3 +152,19 @@
 - JSX uses className instead of class, since class is a reserved JavaScript keyword
 - index.css applies globally across the whole page, while App.css is scoped to styling this specific component's elements
 - Small, consistent details (spacing, border-radius, hover states) make a big visual difference even with minimal CSS
+
+## Day 10 — Spending Summary View
+
+**What I did:**
+
+- Used .reduce() to calculate total spending from the expenses array
+- Used .reduce() to build a category-grouped totals object
+- Displayed the summary using Object.entries() and .map()
+- Added summary styling
+
+**Concepts I learned:**
+
+- .reduce((acc, item) => {...}, initialValue) loops through an array while building up a single running result — same underlying pattern as accumulating a total in a Python loop
+- (acc[key] || 0) is the JavaScript equivalent of Python's dict.get(key, 0) — falls back to 0 if the key doesn't exist yet
+- Object.entries(obj) converts an object into an array of [key, value] pairs, the JS equivalent of Python's dict.items()
+- Values derived entirely from existing state (like this summary) don't need their own useState — they can just be calculated directly in the component body, recalculating automatically on every render
