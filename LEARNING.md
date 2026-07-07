@@ -88,3 +88,20 @@
 - The Authorization header format for bearer tokens is exactly "Bearer <token>"
 - The browser's Network tab Headers section is the definitive way to check exactly what a request actually sent, rather than guessing from code alone
 - This bug looked like an auth/token problem but was actually a plain JavaScript syntax issue — worth checking the simplest explanation before assuming something complex is wrong
+
+## Day 6 — Displaying the Expense List
+
+**What I did:**
+
+- Added expenses state and a fetchExpenses() function to GET data from the API
+- Used useEffect to automatically fetch expenses whenever the token changes (i.e. right after login)
+- Called fetchExpenses() again after successfully adding a new expense, to keep the list in sync
+- Rendered the expense list using .map() to turn API data into JSX elements
+- Fixed a typo: userEffect instead of useEffect
+
+**Concepts I learned:**
+
+- useEffect(fn, [dependency]) runs a function whenever something in the dependency array changes — here, it runs fetchExpenses() automatically when token changes from empty to a real value
+- .map() transforms an array of data into an array of JSX elements — the standard way to render lists in React
+- Every list item needs a unique key prop (here, expense.id) so React can track items efficiently
+- Re-fetching data after a mutation (like adding an expense) is a common pattern to keep the UI in sync with the backend
