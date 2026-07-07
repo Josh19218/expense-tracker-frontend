@@ -13,7 +13,7 @@ A React frontend for the Expense Tracker API — lets users register, log in, an
 
 - **React** (with Vite)
 - **Fetch API** for communicating with the backend
-- Talks to the [Expense Tracker API]https://github.com/Josh19218/expense-tracker-api, a FastAPI backend with JWT auth and a SQLite database
+- Talks to the [Expense Tracker API](https://github.com/Josh19218/expense-tracker-api), a FastAPI backend with JWT auth and a SQLite database
 
 ## How to run
 
@@ -22,7 +22,7 @@ A React frontend for the Expense Tracker API — lets users register, log in, an
    \`\`\`
    npm install
    \`\`\`
-3. Make sure the [Expense Tracker API]https://github.com/Josh19218/expense-tracker-api is running locally at `http://127.0.0.1:8000`
+3. Make sure the [Expense Tracker API](https://github.com/Josh19218/expense-tracker-api) is running locally at `http://127.0.0.1:8000`
 4. Start the dev server:
    \`\`\`
    npm run dev
@@ -45,8 +45,8 @@ A full day-by-day breakdown is in [LEARNING.md](LEARNING.md).
 
 This frontend is part of a three-part portfolio project:
 
-- [Expense Tracker CLI]https://github.com/Josh19218/expense-tracker — the original command-line version, built to learn Python fundamentals
-- [Expense Tracker API]https://github.com/Josh19218/expense-tracker-api — the FastAPI backend this frontend connects to
+- [Expense Tracker CLI](https://github.com/Josh19218/expense-tracker) — the original command-line version, built to learn Python fundamentals
+- [Expense Tracker API](https://github.com/Josh19218/expense-tracker-api) — the FastAPI backend this frontend connects to
 
 ## Possible future improvements
 
