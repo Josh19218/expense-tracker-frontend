@@ -136,6 +136,13 @@ function App() {
     setDescription(expense.description);
   }
 
+  const total = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+
+  const byCategory = expenses.reduce((acc, expense) => {
+    acc[expense.category] = (acc[expense.category] || 0) + expense.amount;
+    return acc;
+  }, {});
+
   return (
     <div className="app-container">
       <h1>Expense Tracker</h1>
@@ -201,6 +208,17 @@ function App() {
               </li>
             ))}
           </ul>
+          <div className="summary">
+            <h2>Summary</h2>
+            <p>Total spent: {total}</p>
+            <ul>
+              {Object.entries(byCategory).map(([category, amount]) => (
+                <li key={category}>
+                  {category}: {amount}
+                </li>
+              ))}
+            </ul>
+          </div>
         </>
       )}
     </div>
