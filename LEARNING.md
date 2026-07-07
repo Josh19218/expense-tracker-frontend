@@ -138,3 +138,17 @@
 - Wrapping a handler in an arrow function (onClick={() => handleDelete(id)}) delays execution until the click happens — without it, the function would run immediately on render
 - A single piece of state (editingId) can control multiple parts of the UI at once: which URL/method to use, what the button says, and whether the form is in "add" or "edit" mode
 - Reusing existing form state for editing (rather than building a separate edit form) keeps the code simpler and avoids duplication
+
+## Day 9 — Basic CSS Styling
+
+**What I did:**
+
+- Added global styling in index.css (body font, background)
+- Added component styling in App.css (container, forms, buttons, list)
+- Applied a className to the outer container for consistent card-style layout
+
+**Concepts I learned:**
+
+- JSX uses className instead of class, since class is a reserved JavaScript keyword
+- index.css applies globally across the whole page, while App.css is scoped to styling this specific component's elements
+- Small, consistent details (spacing, border-radius, hover states) make a big visual difference even with minimal CSS
