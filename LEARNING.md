@@ -122,3 +122,19 @@
 - A Fragment (<>...</>) groups elements without adding an extra DOM node, since JSX requires returning a single root element
 - An arrow function's body can be a single expression (() => doThing()) or a block with multiple statements ({ doThing(); doOtherThing() })
 - Clearing all related state (not just the most obvious piece) matters for both UX and security — a password left visible after logout is a real issue, not just cosmetic
+
+## Day 8 — Edit & Delete Functionality
+
+**What I did:**
+
+- Added handleDelete() to remove an expense via the DELETE endpoint
+- Added editingId state to track which expense (if any) is being edited
+- Added startEdit() to pre-fill the form with an existing expense's values
+- Updated handleSubmit() to conditionally POST (create) or PUT (update) depending on whether editingId is set
+- Updated the submit button's label to reflect the current mode
+
+**Concepts I learned:**
+
+- Wrapping a handler in an arrow function (onClick={() => handleDelete(id)}) delays execution until the click happens — without it, the function would run immediately on render
+- A single piece of state (editingId) can control multiple parts of the UI at once: which URL/method to use, what the button says, and whether the form is in "add" or "edit" mode
+- Reusing existing form state for editing (rather than building a separate edit form) keeps the code simpler and avoids duplication
