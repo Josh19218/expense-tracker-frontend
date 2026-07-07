@@ -36,6 +36,9 @@ function App() {
       const data = await response.json();
       console.log(data);
       fetchExpenses();
+      setAmount("");
+      setCategory("");
+      setDescription("");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -95,50 +98,66 @@ function App() {
   return (
     <div>
       <h1>Expense Tracker</h1>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          placeholder="Amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <button type="submit">Add Expense</button>
-      </form>
-      <ul>
-        {expenses.map((expense) => (
-          <li key={expense.id}>
-            {expense.description} - {expense.amount} ({expense.category})
-          </li>
-        ))}
-      </ul>
+      {!token ? (
+        <form onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit">Login</button>
+        </form>
+      ) : (
+        <>
+          <button
+            onClick={() => {
+              setToken("");
+              setUsername("");
+              setPassword("");
+            }}
+          >
+            Logout
+          </button>
+
+          <form onSubmit={handleSubmit}>
+            <input
+              type="number"
+              placeholder="Amount"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <button type="submit">Add Expense</button>
+          </form>
+
+          <ul>
+            {expenses.map((expense) => (
+              <li key={expense.id}>
+                {expense.description} - {expense.amount} ({expense.category})
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 }
