@@ -9,6 +9,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
   const [expenses, setExpenses] = useState([]);
+  const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
     fetchExpenses();
@@ -17,28 +18,38 @@ function App() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const newExpense = {
+    const expenseData = {
       amount: parseFloat(amount),
       category: category,
       description: description,
     };
 
+    const url = editingId
+      ? `http://127.0.0.1:8000/expenses/${editingId}`
+      : "http://127.0.0.1:8000/expenses";
+
+    const method = editingId ? "PUT" : "POST";
+
     try {
-      const response = await fetch("http://127.0.0.1:8000/expenses", {
-        method: "POST",
+      const response = await fetch(url, {
+        method: method,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(newExpense),
+        body: JSON.stringify(expenseData),
       });
 
-      const data = await response.json();
-      console.log(data);
+      if (!response.ok) {
+        console.error("Failed to save expense");
+        return;
+      }
+
       fetchExpenses();
       setAmount("");
       setCategory("");
       setDescription("");
+      setEditingId(null);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -95,6 +106,36 @@ function App() {
     }
   }
 
+  async function handleDelete(expenseId) {
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/expenses/${expenseId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      if (!response.ok) {
+        console.error("Failed to delete expense");
+        return;
+      }
+
+      fetchExpenses();
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  function startEdit(expense) {
+    setEditingId(expense.id);
+    setAmount(expense.amount);
+    setCategory(expense.category);
+    setDescription(expense.description);
+  }
+
   return (
     <div>
       <h1>Expense Tracker</h1>
@@ -146,13 +187,17 @@ function App() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-            <button type="submit">Add Expense</button>
+            <button type="submit">
+              {editingId ? "Update Expense" : "Add Expense"}
+            </button>
           </form>
 
           <ul>
             {expenses.map((expense) => (
               <li key={expense.id}>
                 {expense.description} - {expense.amount} ({expense.category})
+                <button onClick={() => startEdit(expense)}>Edit</button>
+                <button onClick={() => handleDelete(expense.id)}>Delete</button>
               </li>
             ))}
           </ul>
