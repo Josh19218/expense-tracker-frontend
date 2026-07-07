@@ -1,16 +1,56 @@
-# React + Vite
+# Expense Tracker Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React frontend for the Expense Tracker API — lets users register, log in, and manage their expenses through a simple web interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Login with JWT-based authentication
+- Add expenses with amount, category, and description
+- View a live list of expenses, pulled from a real backend and database
+- Logout, with proper state cleanup
 
-## React Compiler
+## Tech stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React** (with Vite)
+- **Fetch API** for communicating with the backend
+- Talks to the [Expense Tracker API]https://github.com/Josh19218/expense-tracker-api, a FastAPI backend with JWT auth and a SQLite database
 
-## Expanding the ESLint configuration
+## How to run
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone this repository
+2. Install dependencies:
+   \`\`\`
+   npm install
+   \`\`\`
+3. Make sure the [Expense Tracker API]https://github.com/Josh19218/expense-tracker-api is running locally at `http://127.0.0.1:8000`
+4. Start the dev server:
+   \`\`\`
+   npm run dev
+   \`\`\`
+5. Open the printed local URL (usually `http://localhost:5173`) in your browser
+
+## What I learned
+
+This project was my introduction to frontend development and connecting a UI to a real backend. Key things I learned:
+
+- Core React concepts: components, JSX, state (useState), and effects (useEffect)
+- Controlled form inputs and handling form submission
+- Making authenticated HTTP requests with fetch, including handling CORS
+- Managing an authentication flow entirely in the frontend: storing a token, attaching it to requests, and clearing it on logout
+- Debugging real issues: CORS mismatches, incorrect template literal syntax, and typos in JSX tags
+
+A full day-by-day breakdown is in [LEARNING.md](LEARNING.md).
+
+## Related projects
+
+This frontend is part of a three-part portfolio project:
+
+- [Expense Tracker CLI]https://github.com/Josh19218/expense-tracker — the original command-line version, built to learn Python fundamentals
+- [Expense Tracker API]https://github.com/Josh19218/expense-tracker-api — the FastAPI backend this frontend connects to
+
+## Possible future improvements
+
+- Add delete and edit buttons for existing expenses
+- Add proper styling
+- Show a spending summary (total, by category)
+- Deploy live
