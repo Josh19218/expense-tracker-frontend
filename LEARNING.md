@@ -59,3 +59,17 @@
 - CORSMiddleware in FastAPI must list the exact origin(s) allowed to make requests
 - Vite doesn't always run on its default port — if that port is taken, it silently picks the next one, which can cause confusing CORS mismatches
 - The browser's Network tab (not just Console) is essential for debugging failed requests — it shows the actual request/response details
+
+## Day 4 — Login Form & Storing the Token
+
+**What I did:**
+
+- Added a login form (username/password) with its own state
+- Built handleLogin() to send credentials to /login using form-encoded data
+- Stored the returned access token in React state
+
+**Concepts I learned:**
+
+- The /login endpoint expects form-encoded data (URLSearchParams), not JSON, since it uses FastAPI's OAuth2PasswordRequestForm
+- response.ok is a quick way to check if a fetch request succeeded (status 200-299) before processing the response
+- Storing the token in state makes it available to the rest of the component, ready to attach to future authenticated requests
