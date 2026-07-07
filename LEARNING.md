@@ -41,3 +41,21 @@
 - onSubmit={handleSubmit} wires a function to run when the form is submitted
 - parseFloat() converts a string to a decimal number, same underlying reason as float() in Python
 - Structuring form state into one object makes it easy to send as an API request body later
+
+## Day 3 — Connecting to the API & CORS
+
+**What I did:**
+
+- Updated handleSubmit to send a POST request to the API using fetch
+- Hit and fixed a CORS error by adding CORSMiddleware to the FastAPI backend
+- Debugged a port mismatch (Vite ran on 5174, not the default 5173) causing CORS to still fail
+- Confirmed the frontend and backend can communicate — received a "Not authenticated" response as expected, since no login has happened yet
+
+**Concepts I learned:**
+
+- fetch(url, options) sends an HTTP request from JavaScript; options include method, headers, and body
+- JSON.stringify() converts a JS object to a JSON string for sending; response.json() parses a JSON response back into a JS object
+- CORS is a browser security feature blocking requests between different origins (ports count as different origins) unless the server explicitly allows it
+- CORSMiddleware in FastAPI must list the exact origin(s) allowed to make requests
+- Vite doesn't always run on its default port — if that port is taken, it silently picks the next one, which can cause confusing CORS mismatches
+- The browser's Network tab (not just Console) is essential for debugging failed requests — it shows the actual request/response details
