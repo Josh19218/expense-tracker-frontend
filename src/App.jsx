@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
@@ -8,6 +8,11 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
+  const [expenses, setExpenses] = useState([]);
+
+  useEffect(() => {
+    fetchExpenses();
+  }, [token]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -30,6 +35,7 @@ function App() {
 
       const data = await response.json();
       console.log(data);
+      fetchExpenses();
     } catch (error) {
       console.error("Error:", error);
     }
@@ -59,6 +65,28 @@ function App() {
       const data = await response.json();
       setToken(data.access_token);
       console.log("Logged in! Token:", data.access_token);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  async function fetchExpenses() {
+    if (!token) return;
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/expenses", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        console.error("Failed to fetch expenses");
+        return;
+      }
+
+      const data = await response.json();
+      setExpenses(data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -104,6 +132,13 @@ function App() {
         />
         <button type="submit">Add Expense</button>
       </form>
+      <ul>
+        {expenses.map((expense) => (
+          <li key={expense.id}>
+            {expense.description} - {expense.amount} ({expense.category})
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
