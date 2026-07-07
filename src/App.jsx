@@ -137,7 +137,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="app-container">
       <h1>Expense Tracker</h1>
 
       {!token ? (
