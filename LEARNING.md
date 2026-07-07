@@ -73,3 +73,18 @@
 - The /login endpoint expects form-encoded data (URLSearchParams), not JSON, since it uses FastAPI's OAuth2PasswordRequestForm
 - response.ok is a quick way to check if a fetch request succeeded (status 200-299) before processing the response
 - Storing the token in state makes it available to the rest of the component, ready to attach to future authenticated requests
+
+## Day 5 — Authenticated Requests & the Full Flow
+
+**What I did:**
+
+- Added the Authorization header (Bearer <token>) to the expense POST request
+- Debugged a bug where the token wasn't being inserted — used single quotes instead of backticks, so ${token} was sent as literal text instead of the actual value
+- Confirmed the full flow works: login -> token stored -> authenticated request -> expense saved to the database
+
+**Concepts I learned:**
+
+- Template literals require backticks (`), not single or double quotes — ${} interpolation only works inside backticks
+- The Authorization header format for bearer tokens is exactly "Bearer <token>"
+- The browser's Network tab Headers section is the definitive way to check exactly what a request actually sent, rather than guessing from code alone
+- This bug looked like an auth/token problem but was actually a plain JavaScript syntax issue — worth checking the simplest explanation before assuming something complex is wrong
